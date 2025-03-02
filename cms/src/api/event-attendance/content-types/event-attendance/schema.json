@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "event_attendances",
+  "info": {
+    "singularName": "event-attendance",
+    "pluralName": "event-attendances",
+    "displayName": "Event Attendance",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "attendee": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::attendee.attendee"
+    },
+    "event": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::event.event"
+    },
+    "registered_by": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

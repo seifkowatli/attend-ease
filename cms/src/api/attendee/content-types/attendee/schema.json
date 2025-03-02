@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attendees",
+  "info": {
+    "singularName": "attendee",
+    "pluralName": "attendees",
+    "displayName": "Attendees",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name_en": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name_en",
+      "required": true
+    },
+    "name_ar": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string"
+    },
+    "organization": {
+      "type": "string"
+    },
+    "organization_type": {
+      "type": "string"
+    },
+    "seat": {
+      "type": "string"
+    },
+    "demo_day": {
+      "type": "boolean"
+    },
+    "dinner": {
+      "type": "boolean"
+    }
+  }
+}

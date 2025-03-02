@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "attendees_categories",
+  "info": {
+    "singularName": "attendees-category",
+    "pluralName": "attendees-categories",
+    "displayName": "Attendees Categories "
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
