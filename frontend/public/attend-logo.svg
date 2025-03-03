@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="150" viewBox="0 0 250 150">
+  <!-- Group Silhouettes -->
+  <g fill="#2a9d8f">
+    <!-- Larger silhouette -->
+    <circle cx="60" cy="60" r="15"/>
+    <rect x="45" y="75" width="30" height="25" rx="5"/>
+    <!-- Smaller silhouettes behind -->
+    <circle cx="30" cy="50" r="10" opacity="0.8"/>
+    <rect x="22" y="60" width="16" height="18" rx="3" opacity="0.8"/>
+    <circle cx="50" cy="35" r="8" opacity="0.8"/>
+    <rect x="44" y="43" width="12" height="14" rx="2" opacity="0.8"/>
+    <circle cx="85" cy="45" r="10" opacity="0.8"/>
+    <rect x="77" y="55" width="16" height="18" rx="3" opacity="0.8"/>
+  </g>
+
+
+  <!-- Check mark in a circle -->
+  <circle cx="105" cy="95" r="12" fill="#2a9d8f"/>
+  <path d="M100 95 l3 4 l7 -7" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+
+</svg>
