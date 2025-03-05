@@ -50,7 +50,7 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
   } = ticketData?.data[0];
 
   const registerAttendee = async () => {
-    const res = await fetch(`http://localhost:4500/api/event-attendances`, {
+    const res = await fetch(`https://attendease-cms.kraftsai.com/api/event-attendances`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
         data :  { 
           attendee: documentId,
           event: event?.documentId ,
-          users_permissions_user: user?.documentId,
+          registered_by: user?.documentId,
         }
       }),
     });

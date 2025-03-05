@@ -19,7 +19,7 @@ export default function Login() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setErrors(false);
-    const response = await fetch("http://localhost:4500/api/auth/local", {
+    const response = await fetch("https://attendease-cms.kraftsai.com/api/auth/local", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
