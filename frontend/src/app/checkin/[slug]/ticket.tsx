@@ -12,6 +12,7 @@ function snakeToReadable(snake: string): string {
 export interface User {
   jwt: string;
   id: string;
+  documentId : string;
   username: string;
 }
 
@@ -19,7 +20,7 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
 
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
-
+  const [canCheckIn, setCanCheckIn] = useState<boolean>(!isCheckedIn);
   console.log('isCheckedIn' , isCheckedIn)
 
   useEffect(() => {
@@ -57,15 +58,16 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
       },
       body: JSON.stringify({
         data :  { 
-          attendee: id,
-          event: event?.id ,
-          registered_by: user?.id,
+          attendee: documentId,
+          event: event?.documentId ,
+          users_permissions_user: user?.documentId,
         }
       }),
     });
 
     if (res.ok) {
       alert("Attendee Checked-in Successfully");
+      setCanCheckIn(false);
     } else {
       alert("Failed to Check-in Attendee");
     }
@@ -155,11 +157,11 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
          
 
          {
-          (!!isCheckedIn && user?.username) &&   <div className="w-full mt-6 text-center">
+          (!canCheckIn && user?.username) &&   <div className="w-full mt-6 text-center">
             <span className="text-sm font-bold  text-zinc-600">Attendee is Checked-in</span>
           </div>
          }
-         {user?.username && !isCheckedIn && 
+         {user?.username && canCheckIn && 
           <div className="w-full mt-6">
             <button
               onClick={registerAttendee}
