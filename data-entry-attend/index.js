@@ -27,7 +27,7 @@ const processData = async (persons) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzQxMTkyMzkzLCJleHAiOjE3NDM3ODQzOTN9.OJG6Rf-WtaRbZHTZS2xAgBwDSPyhCosOvKN2DvjBA9o"
+            "Authorization" : "Bearer ${token}"
           },
           body: JSON.stringify({ data: attendee })
         });
