@@ -26,15 +26,15 @@
     },
     "name_ar": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "title": {
       "type": "string"
     },
-    "organization": {
+    "phone": {
       "type": "string"
     },
-    "organization_type": {
+    "category": {
       "type": "string"
     },
     "seat": {

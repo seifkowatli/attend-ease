@@ -381,6 +381,7 @@ export interface ApiAttendeeAttendee extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    category: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -393,43 +394,13 @@ export interface ApiAttendeeAttendee extends Struct.CollectionTypeSchema {
       'api::attendee.attendee'
     > &
       Schema.Attribute.Private;
-    name_ar: Schema.Attribute.String & Schema.Attribute.Required;
+    name_ar: Schema.Attribute.String;
     name_en: Schema.Attribute.String & Schema.Attribute.Required;
-    organization: Schema.Attribute.String;
-    organization_type: Schema.Attribute.String;
+    phone: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seat: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'name_en'> & Schema.Attribute.Required;
     title: Schema.Attribute.String;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiAttendeesCategoryAttendeesCategory
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'attendees_categories';
-  info: {
-    displayName: 'Attendees Categories ';
-    pluralName: 'attendees-categories';
-    singularName: 'attendees-category';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::attendees-category.attendees-category'
-    > &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1007,7 +978,6 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::attendee.attendee': ApiAttendeeAttendee;
-      'api::attendees-category.attendees-category': ApiAttendeesCategoryAttendeesCategory;
       'api::event-attendance.event-attendance': ApiEventAttendanceEventAttendance;
       'api::event.event': ApiEventEvent;
       'plugin::content-releases.release': PluginContentReleasesRelease;

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,20 +12,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const ibmPlex = IBM_Plex_Sans_Arabic({
+  variable: "--font-ibm-plex",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Attendease",
-  description: "Attendease Powered By KraftsAi ",
+  description: "Attendease Powered By KraftsAi",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${ibmPlex.variable} antialiased`}
       >
         {children}
       </body>
