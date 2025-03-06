@@ -153,7 +153,7 @@ const Ticket = ({ urlSlug, isCheckedIn, event , ticketData }: any) => {
 
         {/* Bottom Section */}
         <div className="w-full flex-col items-center justify-center py-8 px-10 bg-[#b8f2fe] flex rounded-b-3xl">
-          <QRCode value={"http://google.com"} bgColor="#b8f2fe" size={150} />
+          <QRCode value={window.location.href} bgColor="#b8f2fe" size={150} />
          
 
          {
