@@ -15,7 +15,7 @@ if (!fs.existsSync(invitationDir)) {
   const page = await browser.newPage();
   
   // Set mobile viewport (e.g., iPhone dimensions)
-  await page.setViewport({ width: 375, height: 667 });
+  await page.setViewport({ width: 375, height: 725 });
   
   for (const person of data) {
     if (person["Full Name"]) {
@@ -26,7 +26,7 @@ if (!fs.existsSync(invitationDir)) {
       try {
         await page.goto(url, { waitUntil: "networkidle2" });
         // Screenshot file path
-        const filePath = path.join(invitationDir, `${slug}.png`);
+        const filePath = path.join(invitationDir, `${person['Category']}-${slug}.png`);
         await page.screenshot({ path: filePath });
         console.log(`Saved screenshot for ${person["Full Name"]} to ${filePath}`);
       } catch (error) {

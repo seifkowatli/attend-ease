@@ -1,4 +1,5 @@
 
+import { token } from "./auth.js";
 import { data } from "./data.js";
 import slugify from "slugify";
 
@@ -8,15 +9,15 @@ const processData = async (persons) => {
       // Create the attendee object using the relevant fields.
       const attendee = {
         name_en: person["Full Name"],
-        name_ar: person["Arabic Name"] || person["Full Name"],
+        name_ar: person["Full Name Ar"] || person["Full Name"],
         slug: slugify(person["Full Name"], { lower: true }),
         email: person["Email"] || slugify(person["Full Name"], { lower: true }) + "@hacksyria.com",
-        title: person["Title"] || "",
-        organization: person["Organization"] || "",
-        organization_type: person["Organization Type"] || "",
-        seat: person["Seat"] || "",
-        demo_day: person["Demo Day"] ? true : false,
-        dinner: person["Dinner"] ? true : false
+        title: person["Gender"] === "Female" ?  "السيدة" : "السيد",
+        phone: person["Phone Number"] || "",
+        seat: person["Seating Zone"] || "",
+        demo_day: !!person["Demo Day"] ,
+        dinner: !!person["Dinner"],
+        category: person["Category"] || "",
       };
 
       console.log(attendee.name_en, "-----", attendee.slug);
@@ -27,7 +28,7 @@ const processData = async (persons) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization" : "Bearer ${token}"
+            "Authorization" : `Bearer ${token}`
           },
           body: JSON.stringify({ data: attendee })
         });
