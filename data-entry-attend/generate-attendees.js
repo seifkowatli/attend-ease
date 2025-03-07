@@ -13,11 +13,12 @@ const processData = async (persons) => {
         slug: slugify(person["Full Name"], { lower: true }),
         email: person["Email"] || slugify(person["Full Name"], { lower: true }) + "@hacksyria.com",
         title: person["Gender"] === "Female" ?  "السيدة" : "السيد",
-        phone: person["Phone Number"] || "",
-        seat: person["Seating Zone"] || "",
+        phone: `${person["Phone Number"]}`,
+        seat: `${person["Seating Zone"]}`,
         demo_day: !!person["Demo Day"] ,
+        VIP : !!person["VVIP"],
         dinner: !!person["Dinner"],
-        category: person["Category"] || "",
+        category: `${person["Category"]}` ,
       };
 
       console.log(attendee.name_en, "-----", attendee.slug);

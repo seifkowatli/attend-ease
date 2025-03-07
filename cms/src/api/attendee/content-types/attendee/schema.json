@@ -45,6 +45,9 @@
     },
     "dinner": {
       "type": "boolean"
+    },
+    "VIP": {
+      "type": "boolean"
     }
   }
 }
