@@ -15,7 +15,7 @@ if (!fs.existsSync(invitationDir)) {
   const page = await browser.newPage();
   
   // Set mobile viewport (e.g., iPhone dimensions)
-  await page.setViewport({ width: 375, height: 725 });
+  await page.setViewport({ width: 375, height: 760, isMobile: true });
   
   for (const person of data) {
     if (person["Full Name"]) {
