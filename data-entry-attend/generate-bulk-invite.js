@@ -3,7 +3,7 @@ import slugify from "slugify";
 import { data } from "./data.js";
 
 
-const header = "Title,Fullanme,invitation link,Invite Card\n";
+const header = "Invite,Invited By,Title,Fullanme,invitation link,Invite Card\n";
 
 let csvContent = "\uFEFF" + header;
 
@@ -27,12 +27,14 @@ data.forEach(person => {
     const fullName = person["Full Name Ar"] || person["Full Name"];
     const slug = slugify(person["Full Name"], { lower: true });
     const category  = person["Category"] || ""
+    const invitedBy  = person["Invited By"] || ""
     const invitationLink = `https://attendease.kraftsai.com/checkin/${slug}`;
     const categorySlug = `${category}-${slug}`;
+    
     const title = person["Gender"] === "Female" ?  "السيدة" : "السيد";
 
     // Create a CSV row (wrap fields in quotes in case they include commas)
-    csvContent += `"${getInvitationMessage(title,fullName)}","${title}","${fullName}","${invitationLink}","${categorySlug}"\n`;
+    csvContent += `"${getInvitationMessage(title,fullName)}","${invitedBy}","${title}","${fullName}","${invitationLink}","${categorySlug}"\n`;
   }
 });
 
