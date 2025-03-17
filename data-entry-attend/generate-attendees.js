@@ -1,7 +1,14 @@
-
 import { token } from "./auth.js";
 import { data } from "./data.js";
 import slugify from "slugify";
+import fs from "fs";
+
+const logError = (name, error) => {
+  const logMessage = `${new Date().toISOString()} - ${name}: ${JSON.stringify(error)}\n`;
+  fs.appendFile("generate-attend-err-log.txt", logMessage, (err) => {
+    if (err) console.error("Failed to write error log:", err);
+  });
+};
 
 const processData = async (persons) => {
   for (const person of persons) {
@@ -12,13 +19,13 @@ const processData = async (persons) => {
         name_ar: person["Full Name Ar"] || person["Full Name"],
         slug: slugify(person["Full Name"], { lower: true }),
         email: person["Email"] || slugify(person["Full Name"], { lower: true }) + "@hacksyria.com",
-        title: person["Gender"] === "Female" ?  "السيدة" : "السيد",
+        title: person["Gender"] ? (person["Gender"] === "Female" ? "السيدة" : "السيد") : "",
         phone: `${person["Phone Number"]}`,
         seat: `${person["Seating Zone"]}`,
-        demo_day: !!person["Demo Day"] ,
-        VIP : !!person["VVIP"],
+        demo_day: !!person["Demo Day"],
+        VIP: !!person["VVIP"],
         dinner: !!person["Dinner"],
-        category: `${person["Category"]}` ,
+        category: `${person["Category"]}`,
       };
 
       console.log(attendee.name_en, "-----", attendee.slug);
@@ -29,15 +36,22 @@ const processData = async (persons) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${token}`
+            "Authorization": `Bearer ${token}`
           },
           body: JSON.stringify({ data: attendee })
         });
 
         const result = await response.json();
-        console.log("Created:", result);
+        if (result.error) {
+          console.error("Error creating attendee:", result.error);
+          logError(attendee.name_en, result.error);
+        } else {
+          console.log('is the res ok -------' , response.ok);
+          console.log("Created:", result);
+        }
       } catch (error) {
         console.error("Error creating attendee:", error);
+        logError(attendee.name_en, error);
       }
     }
   }
