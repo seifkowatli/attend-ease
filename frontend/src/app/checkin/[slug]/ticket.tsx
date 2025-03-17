@@ -4,13 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 
-function snakeToReadable(snake: string): string {
-  return snake
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-}
-
 export interface User {
   jwt: string;
   id: string;
