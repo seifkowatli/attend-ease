@@ -4,7 +4,8 @@
   "info": {
     "singularName": "event",
     "pluralName": "events",
-    "displayName": "Events"
+    "displayName": "Events",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,40 @@
     },
     "description": {
       "type": "richtext"
+    },
+    "logo_right": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logo_left": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "location": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "attendees": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::attendee.attendee",
+      "inversedBy": "events"
     }
   }
 }

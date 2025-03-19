@@ -48,6 +48,12 @@
     },
     "VIP": {
       "type": "boolean"
+    },
+    "events": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::event.event",
+      "mappedBy": "attendees"
     }
   }
 }

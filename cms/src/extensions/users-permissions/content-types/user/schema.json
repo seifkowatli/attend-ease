@@ -9,7 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -64,6 +64,13 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
+    },
+    "can_upload_attendees": {
+      "type": "boolean",
+      "default": false
+    },
+    "can_download_attendees": {
+      "type": "boolean"
     }
   }
 }
