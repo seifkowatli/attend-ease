@@ -51,6 +51,12 @@
       "relation": "manyToMany",
       "target": "api::attendee.attendee",
       "inversedBy": "events"
+    },
+    "bg_color": {
+      "type": "string"
+    },
+    "ticket_color": {
+      "type": "string"
     }
   }
 }

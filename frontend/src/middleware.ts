@@ -17,7 +17,7 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
 
-  let data : any = fetchCurrentUser();
+  let data : any = await fetchCurrentUser();
 
   // Redirect to login if accessing a protected route without a confirmed user or if blocked.
   if (isProtectedRoute && (!data?.confirmed || data?.blocked)) {
@@ -25,7 +25,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   // If already authenticated and trying to access the login page, redirect to profile.
-  if (isAuthRoute && data?.confirmed && !data?.blocked) {
+  if (isAuthRoute && (data?.confirmed && !data?.blocked)) {
     return NextResponse.redirect(new URL("/profile", req.nextUrl));
   }
     

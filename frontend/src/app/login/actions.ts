@@ -1,8 +1,8 @@
 "use server";
 
-import { z } from "zod";
-import { createSession, deleteSession } from "../lib/session";
 import { redirect } from "next/navigation";
+import { z } from "zod";
+import { createSession } from "../lib/session";
 
 const loginSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }).trim(),

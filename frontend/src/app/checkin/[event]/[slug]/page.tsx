@@ -1,12 +1,15 @@
+import { fetchCurrentUser } from "@/app/lib/session";
 import { getEvent, getTicketData, isCheckedIn } from "./actions";
 import Ticket from "./ticket";
 
 export default async function Checkin({ params }: any) {
-  const { slug } = params;
-  const ticketData = await getTicketData(slug);
+  const { slug , event : eventName } = params;
+  const ticketData = await getTicketData(slug ,eventName);
   const attendeeCheckedIn = await isCheckedIn(slug);
-  const event = await getEvent();
+  const event = await getEvent(eventName);
+  const user = await fetchCurrentUser()
 
+  console.log('ticketData' , ticketData)
   if (ticketData?.data?.length === 0)
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
@@ -21,6 +24,7 @@ export default async function Checkin({ params }: any) {
       ticketData={ticketData}
       isCheckedIn={attendeeCheckedIn}
       event={event}
+      user={user}
     />
   );
 }
