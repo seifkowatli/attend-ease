@@ -57,28 +57,20 @@ const Ticket = ({ urlSlug, isCheckedIn, user, event, ticketData }: any) => {
         >
           <div className="flex justify-between w-full mb-4">
             <div className="flex flex-col items-center">
-              <Image
-                src={
-                  event?.logo_left?.formats?.thumbnail?.url
-                    ? `${process.env.NEXT_PUBLIC_API_URL}${event?.logo_left?.formats?.thumbnail?.url}`
-                    : "/hack-syria.svg"
-                }
+              { event?.logo_left?.formats?.thumbnail?.url && <Image
+                src={`${process.env.NEXT_PUBLIC_API_URL}${event?.logo_left?.formats?.thumbnail?.url}`}
                 alt="Logo 1"
                 width={90}
                 height={90}
-              />
+              />}
             </div>
             <div className="flex flex-col items-center">
-              <Image
-                src={
-                  event?.logo_right?.formats?.thumbnail?.url
-                    ? `${process.env.NEXT_PUBLIC_API_URL}${event?.logo_right?.formats?.thumbnail?.url}`
-                    : "/hack-syria-1.svg"
-                }
+              { event?.logo_right?.formats?.thumbnail?.url&& <Image
+                src={`${process.env.NEXT_PUBLIC_API_URL}${event?.logo_right?.formats?.thumbnail?.url}`}
                 alt="Logo 2"
                 width={90}
                 height={90}
-              />
+              />}
             </div>
           </div>
 
